@@ -15,6 +15,9 @@ import { PROFILE } from '../data/portfolio';
 import { HeroBanner } from './HeroBanner';
 import { XLogo } from './TechIcons';
 
+// Get your free Access Key at https://web3forms.com/ using pushkarshinde08@gmail.com
+const WEB3FORMS_ACCESS_KEY = '19abc039-492a-465d-aec5-d0eac7561460';
+
 interface ContactPageProps {
   theme: 'dark' | 'light';
   onToggleTheme: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -36,21 +39,26 @@ export const ContactPage: React.FC<ContactPageProps> = ({ theme, onToggleTheme }
 
     setStatus('sending');
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${PROFILE.email}`, {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
           name: name.trim(),
           email: email.trim(),
           message: message.trim(),
-          _subject: `Portfolio message from ${name.trim()}`,
+          subject: `Portfolio message from ${name.trim()}`,
+          from_name: 'Pushkar Portfolio',
+          botcheck: false,
         }),
       });
 
-      if (!res.ok) throw new Error('Failed');
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error('Failed');
+
       setStatus('sent');
       setName('');
       setEmail('');
