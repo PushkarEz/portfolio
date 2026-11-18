@@ -111,19 +111,18 @@ export const HeroBanner: React.FC = () => {
               clouds: false,
             };
 
-  // Smooth real-time sun arc across the window (5:00 AM -> 8:00 PM IST)
   const dayProgress = Math.min(1, Math.max(0, ((hour24 - 5) * 60 + minute) / (15 * 60)));
   const sunX = Math.round(70 + dayProgress * 172);
   const sunY = Math.round(86 - Math.sin(dayProgress * Math.PI) * 46);
 
   return (
-    <div className="relative h-44 w-full overflow-hidden border-b grid-line bg-[#090A0E] sm:h-56">
+    <div className="w-full overflow-hidden border-b grid-line bg-[#090A0E]">
       <svg
         viewBox="0 0 900 240"
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="xMidYMid meet"
         shapeRendering="crispEdges"
         aria-hidden="true"
-        className="block h-full w-full"
+        className="block h-auto w-full"
       >
         <defs>
           <linearGradient id="portfolioSkyGrad" x1="0" y1="0" x2="0" y2="1">
@@ -218,20 +217,20 @@ export const HeroBanner: React.FC = () => {
         <rect x="160" y="32" width="4" height="116" fill="#1A1E2B" />
         <rect x="52" y="92" width="220" height="4" fill="#1A1E2B" />
 
-        {/* Top-Right Pixel Lab Card with Real-Time Phase + Live IST Clock */}
-        <rect x="656" y="20" width="208" height="60" fill="#10131A" />
-        <rect x="656" y="20" width="208" height="2" fill="#27272A" />
-        <rect x="656" y="78" width="208" height="2" fill="#27272A" />
-        <rect x="656" y="20" width="2" height="60" fill="#27272A" />
-        <rect x="862" y="20" width="2" height="60" fill="#27272A" />
-        <rect x="668" y="32" width="6" height="6" fill={theme.accent} className="pb-led1" />
-        <text x="682" y="39" fill="#F2F2F2" fontFamily="monospace" fontSize="12" fontWeight="bold">
+        {/* Top-Right Pixel Lab Card (Crisp & legible even on mobile) */}
+        <rect x="654" y="16" width="214" height="68" fill="#10131A" />
+        <rect x="654" y="16" width="214" height="2" fill="#27272A" />
+        <rect x="654" y="82" width="214" height="2" fill="#27272A" />
+        <rect x="654" y="16" width="2" height="68" fill="#27272A" />
+        <rect x="866" y="16" width="2" height="68" fill="#27272A" />
+        <rect x="668" y="30" width="6" height="6" fill={theme.accent} className="pb-led1" />
+        <text x="682" y="37" fill="#F2F2F2" fontFamily="monospace" fontSize="13" fontWeight="bold">
           PUSHKAR_AI_LAB
         </text>
-        <text x="668" y="55" fill="#A1A1AA" fontFamily="monospace" fontSize="10">
+        <text x="668" y="55" fill="#A1A1AA" fontFamily="monospace" fontSize="11">
           21Y · AI / ML
         </text>
-        <text x="668" y="71" fill={theme.accent} fontFamily="monospace" fontSize="10">
+        <text x="668" y="73" fill={theme.accent} fontFamily="monospace" fontSize="11">
           {theme.phase} · {clock12 || 'PUNE, IN'}
         </text>
 
