@@ -279,7 +279,7 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
             <TechBrandIcon name="Flask" className="inline h-3.5 w-3.5 text-ink/80" />
             <span>Flask</span>
           </span>{' '}
-          to ship web tools like <strong className="font-medium text-ink">PhishGuard</strong>,
+          to ship web tools like <strong className="font-medium text-ink">ByteX</strong>,
           explore{' '}
           <span className="inline-flex items-center gap-1 align-baseline font-medium text-ink">
             <TechBrandIcon name="Ollama" className="inline h-3.5 w-3.5 text-[#A78BFA]" />

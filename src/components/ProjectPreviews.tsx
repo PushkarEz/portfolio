@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { ProjectItem } from '../data/portfolio';
 
 const EV_STUDIO_PALETTES = [
@@ -8,6 +8,9 @@ const EV_STUDIO_PALETTES = [
 ];
 
 export const ProjectPreviewGraphic: React.FC<{ project: ProjectItem }> = ({ project }) => {
+  const [bytexImgFailed, setBytexImgFailed] = useState(false);
+  const [pyVizImgFailed, setPyVizImgFailed] = useState(false);
+
   const randomEvBg = useMemo(
     () => EV_STUDIO_PALETTES[Math.floor(Math.random() * EV_STUDIO_PALETTES.length)],
     []
@@ -15,27 +18,64 @@ export const ProjectPreviewGraphic: React.FC<{ project: ProjectItem }> = ({ proj
 
   switch (project.walkthroughType) {
     case 'phishguard-preview':
+      if (!bytexImgFailed) {
+        return (
+          <div className="relative h-48 w-full overflow-hidden rounded-lg border grid-line bg-[#EEF2FF]">
+            <img
+              src="/bytex.png"
+              alt="ByteX web application preview"
+              onError={() => setBytexImgFailed(true)}
+              className="h-full w-full object-cover object-top"
+            />
+          </div>
+        );
+      }
       return (
-        <div className="relative flex h-48 w-full items-end justify-end overflow-hidden rounded-lg bg-gradient-to-br from-[#A3E635] via-[#4ADE80] to-[#0D9488] p-4 pb-0 pr-0">
+        <div className="relative flex h-48 w-full items-end justify-end overflow-hidden rounded-lg bg-gradient-to-br from-[#6366F1] via-[#8B5CF6] to-[#4F46E5] p-4 pb-0 pr-0">
           <div className="h-[88%] w-[92%] overflow-hidden rounded-tl-lg border-l border-t border-black/15 bg-[#FAFAFA] text-[#171717] shadow-2xl">
             <div className="flex items-center justify-between border-b border-black/10 px-4 py-2 text-[10px]">
-              <span className="font-semibold tracking-tight">PhishGuard</span>
-              <span className="rounded bg-black px-2 py-0.5 font-mono text-[9px] text-white">
-                URL Analyzer
+              <span className="font-semibold tracking-tight">ByteX</span>
+              <span className="rounded bg-indigo-600 px-2 py-0.5 font-mono text-[9px] text-white">
+                Security Suite
               </span>
             </div>
             <div className="px-5 pt-5 text-center">
               <p className="text-base font-semibold leading-tight tracking-tight">
-                Inspect suspicious links
+                Just Paste.
                 <br />
-                with AI explanations.
+                ByteX Does The Rest.
               </p>
-              <div className="mx-auto mt-3 flex max-w-[230px] items-center justify-between rounded border border-black/15 bg-white px-2.5 py-1.5 font-mono text-[9px] text-neutral-500">
-                <span className="truncate">https://suspicious-link.test</span>
-                <span className="rounded bg-emerald-600 px-1.5 py-0.5 text-[8px] text-white">
-                  Scan
-                </span>
+            </div>
+          </div>
+        </div>
+      );
+
+    case 'python-viz-walkthrough':
+      if (!pyVizImgFailed) {
+        return (
+          <div className="relative h-48 w-full overflow-hidden rounded-lg border grid-line bg-[#0B0F17]">
+            <img
+              src="/python-visualizer.png"
+              alt="Python Execution Visualizer preview"
+              onError={() => setPyVizImgFailed(true)}
+              className="h-full w-full object-cover object-top"
+            />
+          </div>
+        );
+      }
+      return (
+        <div className="relative flex h-48 w-full items-end justify-end overflow-hidden rounded-lg bg-gradient-to-br from-[#38BDF8] via-[#60A5FA] to-[#A78BFA] p-4 pb-0 pr-0">
+          <div className="h-[88%] w-[92%] overflow-hidden rounded-tl-lg border-l border-t border-black/15 bg-[#111216] text-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 px-4 py-2 text-[10px]">
+              <span className="font-mono font-medium">Execution Visualizer</span>
+              <span className="font-mono text-[9px] text-sky-400">Python</span>
+            </div>
+            <div className="space-y-1.5 p-4 font-mono text-[10px]">
+              <div className="text-neutral-400">01 nums = [2, 4, 6]</div>
+              <div className="rounded bg-sky-500/20 px-2 py-1 text-sky-300">
+                &gt; 02 for n in nums: total += n
               </div>
+              <div className="text-neutral-400">03 print(total)</div>
             </div>
           </div>
         </div>
@@ -94,25 +134,6 @@ export const ProjectPreviewGraphic: React.FC<{ project: ProjectItem }> = ({ proj
                   Ollama QA
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      );
-
-    case 'python-viz-walkthrough':
-      return (
-        <div className="relative flex h-48 w-full items-end justify-end overflow-hidden rounded-lg bg-gradient-to-br from-[#38BDF8] via-[#60A5FA] to-[#A78BFA] p-4 pb-0 pr-0">
-          <div className="h-[88%] w-[92%] overflow-hidden rounded-tl-lg border-l border-t border-black/15 bg-[#111216] text-white shadow-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-2 text-[10px]">
-              <span className="font-mono font-medium">Execution Visualizer</span>
-              <span className="font-mono text-[9px] text-sky-400">Python</span>
-            </div>
-            <div className="space-y-1.5 p-4 font-mono text-[10px]">
-              <div className="text-neutral-400">01 nums = [2, 4, 6]</div>
-              <div className="rounded bg-sky-500/20 px-2 py-1 text-sky-300">
-                &gt; 02 for n in nums: total += n
-              </div>
-              <div className="text-neutral-400">03 print(total)</div>
             </div>
           </div>
         </div>

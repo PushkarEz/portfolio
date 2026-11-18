@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { flushSync } from 'react-dom';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ProjectGrid } from './components/ProjectGrid';
@@ -201,6 +201,7 @@ export const App: React.FC = () => {
               path="/contact"
               element={<ContactPage theme={theme} onToggleTheme={toggleTheme} />}
             />
+            <Route path="/projects/phishguard" element={<Navigate to="/projects/bytex" replace />} />
             <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

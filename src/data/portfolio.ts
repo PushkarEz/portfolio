@@ -120,12 +120,12 @@ export const QUOTES: QuoteItem[] = [
 
 export const PROJECTS: ProjectItem[] = [
   {
-    slug: 'phishguard',
-    title: 'PhishGuard — AI-Powered URL Security Analyzer',
-    shortTitle: 'PhishGuard',
-    subtitle: 'AI-powered URL security analyzer.',
+    slug: 'bytex',
+    title: 'ByteX — AI-Powered Security & Threat Analyzer',
+    shortTitle: 'ByteX',
+    subtitle: 'AI-powered URL, breach & threat analyzer.',
     description:
-      'Analyzes suspicious URLs with VirusTotal, explains threats via Groq AI, and includes breach, password, and extension features.',
+      'Analyzes suspicious URLs, emails, passwords, IPs, and WhatsApp messages with VirusTotal and Groq AI explanations.',
     status: 'Live',
     category: 'AI & Security',
     technologies: ['Python', 'Flask', 'VirusTotal', 'Groq API'],
@@ -134,11 +134,11 @@ export const PROJECTS: ProjectItem[] = [
     problem:
       'Everyday users regularly encounter unfamiliar or shortened links and struggle to judge whether a URL is safe—or make sense of raw technical scan outputs.',
     solution:
-      'PhishGuard pairs multi-engine URL reputation lookups from the VirusTotal API with plain-language threat explanations generated via the Groq API, alongside email breach, password security, browser extension, and cybersecurity learning features.',
+      'ByteX pairs multi-engine URL reputation lookups from the VirusTotal API with plain-language threat explanations generated via the Groq API, alongside email breach, password security, IP/WhatsApp inspection, browser extension, and cybersecurity learning features.',
     features: [
       'Suspicious URL inspection using VirusTotal API',
       'AI-generated threat explanations in simple language via Groq AI',
-      'Email breach checking & password security utilities',
+      'Email breach timeline, password security & IP/WhatsApp checking',
       'Browser extension & cybersecurity awareness features',
     ],
     approach: [
@@ -147,7 +147,7 @@ export const PROJECTS: ProjectItem[] = [
       'Deployed the web application on Render for live testing.',
     ],
     learned: [
-      'Structuring multi-API Flask endpoints and handling timeouts and errors gracefully.',
+      'Structuring multi-API Flask endpoints and handling timeouts and error responses cleanly.',
       'Translating raw security metadata into approachable user-facing explanations.',
       'Deploying a Python Flask application to production hosting.',
     ],
@@ -156,6 +156,39 @@ export const PROJECTS: ProjectItem[] = [
       'Intended as a preliminary inspection and awareness tool.',
     ],
     walkthroughType: 'phishguard-preview',
+  },
+  {
+    slug: 'python-visualizer',
+    title: 'Python Execution Visualizer',
+    shortTitle: 'Python Visualizer',
+    subtitle: 'Visual code execution learning tool.',
+    description:
+      'Interactive Python learning app built to visually trace step-by-step code execution, control flow, and variable state.',
+    status: 'Live',
+    category: 'Learning',
+    technologies: ['Python', 'Web UI'],
+    liveUrl: 'https://pushkarez.github.io/Python-Execution-Visualizer/',
+    showInMainGrid: true,
+    problem:
+      'For learners starting out in Python, control flow and changing variable states happen invisibly in memory.',
+    solution:
+      'A focused learning application designed to step through execution and show how Python code behaves line by line.',
+    features: [
+      'Step-by-step execution clarity',
+      'Tracking variable state changes across lines',
+      'Focused on beginner comprehension',
+    ],
+    approach: [
+      'Prioritized clarity over IDE complexity so learners can build an accurate mental model of execution.',
+    ],
+    learned: [
+      'Deeper understanding of Python execution flow and state tracking.',
+      'Designing simple educational developer tools.',
+    ],
+    limitations: [
+      'Built as a focused learning project rather than a general-purpose debugger.',
+    ],
+    walkthroughType: 'python-viz-walkthrough',
   },
   {
     slug: 'cipherx',
@@ -226,38 +259,6 @@ export const PROJECTS: ProjectItem[] = [
       'Image-only or scanned PDFs require separate OCR preprocessing.',
     ],
     walkthroughType: 'pdf-rag-walkthrough',
-  },
-  {
-    slug: 'python-visualizer',
-    title: 'Python Execution Visualizer',
-    shortTitle: 'Python Visualizer',
-    subtitle: 'Visual code execution learning tool.',
-    description:
-      'Learning-focused Python tool built to visually explain step-by-step code execution and variable state.',
-    status: 'Learning',
-    category: 'Learning',
-    technologies: ['Python'],
-    showInMainGrid: true,
-    problem:
-      'For learners starting out in Python, control flow and changing variable states happen invisibly in memory.',
-    solution:
-      'A focused learning application designed to step through execution and show how Python code behaves line by line.',
-    features: [
-      'Step-by-step execution clarity',
-      'Tracking variable state changes across lines',
-      'Focused on beginner comprehension',
-    ],
-    approach: [
-      'Prioritized clarity over IDE complexity so learners can build an accurate mental model of execution.',
-    ],
-    learned: [
-      'Deeper understanding of Python execution flow and state tracking.',
-      'Designing simple educational developer tools.',
-    ],
-    limitations: [
-      'Built as a focused learning project rather than a general-purpose debugger.',
-    ],
-    walkthroughType: 'python-viz-walkthrough',
   },
   {
     slug: 'ev-parking',
@@ -366,14 +367,14 @@ export const TECH_STACK: StackItem[] = [
     name: 'Groq API',
     category: 'AI & Machine Learning',
     stage: 'Used in Projects',
-    note: 'Fast LLM inference powering threat explanations in PhishGuard.',
+    note: 'Fast LLM inference powering threat explanations in ByteX.',
     brandColor: '#F55036',
   },
   {
     name: 'Flask',
     category: 'Backend & APIs',
     stage: 'Used in Projects',
-    note: 'Lightweight Python web backend powering PhishGuard.',
+    note: 'Lightweight Python web backend powering ByteX.',
     brandColor: '#A3A3A3',
   },
   {
@@ -470,19 +471,19 @@ export const JOURNEY_ENTRIES: TimelineEntry[] = [
   },
   {
     period: '2025 – 2026',
-    title: 'Hackathons, Competitions & PhishGuard',
+    title: 'Hackathons, Competitions & ByteX',
     subtitle: 'Shipping & Demoing Projects',
     summary:
-      'Built PhishGuard and presented projects at hackathons and technical competitions.',
+      'Built ByteX and presented projects at hackathons and technical competitions.',
     details: [
-      'Built & deployed PhishGuard (Python, Flask, VirusTotal API, Groq API) live on Render.',
+      'Built & deployed ByteX (Python, Flask, VirusTotal API, Groq API) live on Render.',
       'Shortlisted at Quantum Arena — 24-hour hackathon.',
       'Awarded a 25% scholarship at the Code4EdTech Hackathon.',
       'Presented an EV Parking System at the COEP Project Competition.',
     ],
-    tags: ['PhishGuard', 'Quantum Arena', 'Code4EdTech', 'COEP'],
+    tags: ['ByteX', 'Quantum Arena', 'Code4EdTech', 'COEP'],
     kind: 'hackathon',
-    projectSlug: 'phishguard',
+    projectSlug: 'bytex',
   },
   {
     period: '2026',
