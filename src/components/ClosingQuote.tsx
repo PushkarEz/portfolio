@@ -14,7 +14,7 @@ export const ClosingQuote: React.FC = () => {
 
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % QUOTES.length);
-    }, 5500);
+    }, 3000);
 
     return () => clearInterval(timer);
   }, [paused]);
@@ -23,7 +23,6 @@ export const ClosingQuote: React.FC = () => {
 
   return (
     <section id="quotes" className="scroll-mt-16 border-b grid-line">
-      {/* Closing Let's Talk strip -> opens /contact */}
       <Reveal>
         <div className="flex flex-col items-center justify-center border-b grid-line px-5 py-12 text-center sm:px-8 sm:py-14">
           <p className="text-sm text-muted sm:text-base">
@@ -39,13 +38,12 @@ export const ClosingQuote: React.FC = () => {
         </div>
       </Reveal>
 
-      {/* Smooth Animated 4-Quote Carousel */}
       <div
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         className="px-5 py-14 text-center sm:px-8 sm:py-16"
       >
-        <div key={index} className="animate-quote-in mx-auto min-h-[130px] max-w-2xl">
+        <div key={index} className="animate-quote-in mx-auto flex min-h-[175px] max-w-2xl flex-col justify-center">
           <span
             aria-hidden="true"
             className="block font-serif text-4xl leading-none text-muted/40"
@@ -63,11 +61,12 @@ export const ClosingQuote: React.FC = () => {
               </cite>
               <span className="h-px w-8 bg-line" />
             </div>
-            <span className="font-mono text-[10px] text-muted">{active.source}</span>
+            {active.source && (
+              <span className="font-mono text-[10px] text-muted">{active.source}</span>
+            )}
           </div>
         </div>
 
-        {/* Indicator dots */}
         <div className="mt-7 flex items-center justify-center gap-2" aria-label="Quote switcher">
           {QUOTES.map((q, i) => (
             <button

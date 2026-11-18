@@ -1,4 +1,4 @@
-export type ProjectStatus = 'Live' | 'Experimental' | 'In Progress' | 'Learning';
+export type ProjectStatus = 'Live' | 'Experimental' | 'In Progress' | 'Learning' | 'Competition';
 
 export type ProjectCategory = 'All' | 'AI & Security' | 'Voice & RAG' | 'Learning';
 
@@ -62,7 +62,6 @@ export const PROFILE = {
   location: 'Pune, India',
   shortMeta: "be e&tc '27 · python · ai",
   avatarPath: '/avatar.jpg',
-  // Replace public/resume.pdf anytime to update your downloadable résumé without touching code
   resumeUrl: '/resume.pdf',
   email: 'pushkarshinde08@gmail.com',
   githubUsername: 'PushkarEz',
@@ -85,22 +84,37 @@ export const QUOTES: QuoteItem[] = [
   {
     text: 'Machines take me by surprise with great frequency.',
     author: 'Alan Turing',
-    source: 'The Turing Digital Archive',
+    source: 'Father of Computer Science',
   },
   {
-    text: 'AI is the new electricity.',
+    text: 'Artificial intelligence is the new electricity.',
     author: 'Andrew Ng',
-    source: 'Gracious Quotes',
+    source: 'AI Pioneer',
   },
   {
-    text: 'We can only see a short distance ahead.',
-    author: 'Alan Turing',
-    source: 'The Alan Turing Institute',
+    text: 'The rise of powerful AI will be either the best, or the worst thing, ever to happen to humanity. We do not yet know which.',
+    author: 'Stephen Hawking',
+    source: 'Theoretical Physicist',
   },
   {
-    text: 'Optimism, obsession, self-belief, raw horsepower and personal connections are how things get started.',
+    text: 'There is nothing artificial about AI. AI is made by humans.',
+    author: 'Fei-Fei Li',
+    source: 'AI Researcher',
+  },
+  {
+    text: 'The first ultraintelligent machine is the last invention that man need ever make.',
+    author: 'I. J. Good',
+    source: 'Mathematician',
+  },
+  {
+    text: 'The Intelligence Age has begun.',
     author: 'Sam Altman',
-    source: 'Notes on Building',
+    source: 'OpenAI CEO',
+  },
+  {
+    text: 'We can only see a short distance ahead, but we can see plenty there that needs to be done.',
+    author: 'Alan Turing',
+    source: '',
   },
 ];
 
@@ -149,7 +163,7 @@ export const PROJECTS: ProjectItem[] = [
     shortTitle: 'CipherX',
     subtitle: 'Local LLM voice assistant & automation.',
     description:
-      'A Python-based voice assistant using speech recognition, TTS, and Ollama for local LLM replies and desktop automation.',
+      'Local Python desktop voice assistant pairing speech recognition (ASR), TTS, and Ollama for spoken replies and OS automation.',
     status: 'Experimental',
     category: 'Voice & RAG',
     technologies: ['Python', 'Ollama', 'ASR', 'TTS'],
@@ -180,11 +194,11 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     slug: 'pdf-chat',
-    title: 'PDF Chat RAG Assistant',
+    title: 'PDF Chat RAG',
     shortTitle: 'PDF Chat RAG',
     subtitle: 'Document question-answering pipeline.',
     description:
-      'An experimental RAG app implementing PDF extraction, text chunking, Sentence Transformer embeddings, FAISS search, and Ollama.',
+      'Document Q&A pipeline exploring PDF extraction, chunking, Sentence Transformers, FAISS search, and Ollama.',
     status: 'In Progress',
     category: 'Voice & RAG',
     technologies: ['Python', 'FAISS', 'Embeddings', 'Ollama'],
@@ -219,7 +233,7 @@ export const PROJECTS: ProjectItem[] = [
     shortTitle: 'Python Visualizer',
     subtitle: 'Visual code execution learning tool.',
     description:
-      'A Python-based learning application designed to visually explain step-by-step code execution and variable behavior.',
+      'Learning-focused Python tool built to visually explain step-by-step code execution and variable state.',
     status: 'Learning',
     category: 'Learning',
     technologies: ['Python'],
@@ -252,9 +266,9 @@ export const PROJECTS: ProjectItem[] = [
     subtitle: 'COEP Project Competition entry.',
     description:
       'A student competition project involving an EV Parking System, presented at the COEP Project Competition.',
-    status: 'Learning',
+    status: 'Competition',
     category: 'Competition',
-    technologies: ['Engineering Design', 'Presentation'],
+    technologies: ['Engineering Design', 'COEP'],
     showInMainGrid: false,
     problem:
       'Exploring structured parking concepts tailored for electric vehicles in an academic competition setting.',

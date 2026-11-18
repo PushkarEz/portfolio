@@ -1,27 +1,15 @@
 import React, { useMemo } from 'react';
 import { ProjectItem } from '../data/portfolio';
 
-const EV_BANNER_PALETTES = [
-  {
-    bg: 'from-[#064E3B] via-[#0F766E] to-[#115E59]',
-    accent: 'text-emerald-300',
-    glow: 'bg-emerald-400/20',
-  },
-  {
-    bg: 'from-[#1E1B4B] via-[#312E81] to-[#1E3A8A]',
-    accent: 'text-sky-300',
-    glow: 'bg-sky-400/20',
-  },
-  {
-    bg: 'from-[#18181B] via-[#27272A] to-[#14532D]',
-    accent: 'text-lime-300',
-    glow: 'bg-lime-400/20',
-  },
+const EV_STUDIO_PALETTES = [
+  'from-[#34D399] via-[#10B981] to-[#0D9488]',
+  'from-[#38BDF8] via-[#3B82F6] to-[#4F46E5]',
+  'from-[#A78BFA] via-[#8B5CF6] to-[#6D28D9]',
 ];
 
 export const ProjectPreviewGraphic: React.FC<{ project: ProjectItem }> = ({ project }) => {
-  const randomPalette = useMemo(
-    () => EV_BANNER_PALETTES[Math.floor(Math.random() * EV_BANNER_PALETTES.length)],
+  const randomEvBg = useMemo(
+    () => EV_STUDIO_PALETTES[Math.floor(Math.random() * EV_STUDIO_PALETTES.length)],
     []
   );
 
@@ -134,34 +122,29 @@ export const ProjectPreviewGraphic: React.FC<{ project: ProjectItem }> = ({ proj
     default:
       return (
         <div
-          className={`relative flex h-44 w-full items-center justify-between overflow-hidden rounded-lg bg-gradient-to-br ${randomPalette.bg} p-6 text-white`}
+          className={`relative flex h-48 w-full items-end justify-end overflow-hidden rounded-lg bg-gradient-to-br ${randomEvBg} p-4 pb-0 pr-0`}
         >
-          <div
-            aria-hidden="true"
-            className={`absolute -right-8 -top-8 h-40 w-40 rounded-full blur-2xl ${randomPalette.glow}`}
-          />
-          <div className="relative z-10 max-w-md">
-            <span className={`font-mono text-[10px] uppercase tracking-widest ${randomPalette.accent}`}>
-              COEP Project Competition
-            </span>
-            <h3 className="mt-1.5 font-serif text-3xl tracking-tight">EV Parking System</h3>
-            <p className="mt-1.5 text-xs leading-relaxed text-white/80">
-              Student competition project presented and demonstrated at the COEP Project Competition.
-            </p>
-          </div>
-
-          <div
-            aria-hidden="true"
-            className="relative z-10 hidden grid-cols-2 gap-2 opacity-80 sm:grid"
-          >
-            {['BAY 01', 'BAY 02', 'BAY 03', 'EV'].map((slot) => (
-              <div
-                key={slot}
-                className="flex h-12 w-16 items-center justify-center rounded border border-white/25 bg-black/25 font-mono text-[10px] tracking-wider"
-              >
-                {slot}
+          <div className="h-[88%] w-[92%] overflow-hidden rounded-tl-lg border-l border-t border-black/15 bg-[#111216] text-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 px-4 py-2 text-[10px]">
+              <span className="font-medium">EV Parking System</span>
+              <span className="font-mono text-[9px] text-emerald-400">COEP Competition</span>
+            </div>
+            <div className="p-4">
+              <p className="text-sm font-semibold leading-tight">
+                Student Project Showcase
+              </p>
+              <div className="mt-3 grid grid-cols-3 gap-1.5 font-mono text-[9px] text-neutral-300">
+                <div className="rounded border border-white/10 bg-white/5 p-1.5 text-center">
+                  BAY 01
+                </div>
+                <div className="rounded border border-emerald-400/40 bg-emerald-500/15 p-1.5 text-center text-emerald-300">
+                  EV SLOT
+                </div>
+                <div className="rounded border border-white/10 bg-white/5 p-1.5 text-center">
+                  BAY 03
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       );

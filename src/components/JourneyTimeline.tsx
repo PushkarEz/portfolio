@@ -21,7 +21,7 @@ const KIND_ICON: Record<TimelineEntry['kind'], React.ReactNode> = {
 };
 
 export const JourneyTimeline: React.FC = () => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(3);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
     <section id="journey" className="scroll-mt-16 border-b grid-line">

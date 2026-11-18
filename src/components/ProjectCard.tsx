@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Github, Globe } from 'lucide-react';
-import { ProjectItem } from '../data/portfolio';
+import { PROFILE, ProjectItem } from '../data/portfolio';
 import { ProjectPreviewGraphic } from './ProjectPreviews';
 
 const STATUS_DOT_COLOR: Record<ProjectItem['status'], string> = {
@@ -9,11 +9,14 @@ const STATUS_DOT_COLOR: Record<ProjectItem['status'], string> = {
   Experimental: 'bg-violet-400',
   'In Progress': 'bg-sky-400',
   Learning: 'bg-amber-400',
+  Competition: 'bg-teal-400',
 };
 
 export const ProjectCard: React.FC<{ project: ProjectItem }> = ({ project }) => {
+  const githubHref = project.githubUrl || PROFILE.socials.github;
+
   return (
-    <article className="group flex flex-col justify-between rounded-none border grid-line bg-canvas p-4 transition-colors duration-200 hover:bg-surface/60">
+    <article className="group flex h-full flex-col justify-between border grid-line bg-canvas p-4 transition-colors duration-200 hover:bg-surface/60">
       <div>
         <Link
           to={`/projects/${project.slug}`}
@@ -24,7 +27,6 @@ export const ProjectCard: React.FC<{ project: ProjectItem }> = ({ project }) => 
           </div>
         </Link>
 
-        {/* Title & Status Dot matching samworks.vercel.app */}
         <div className="mt-4 flex items-center justify-between gap-3">
           <Link
             to={`/projects/${project.slug}`}
@@ -44,7 +46,6 @@ export const ProjectCard: React.FC<{ project: ProjectItem }> = ({ project }) => 
         <p className="mt-2.5 text-[13px] leading-relaxed text-ink/80">{project.description}</p>
       </div>
 
-      {/* Bottom Row: Compact Tech Pills (left) + Globe & GitHub icons (right) */}
       <div className="mt-5 flex items-center justify-between gap-3 pt-2">
         <div className="flex flex-wrap gap-1.5">
           {project.technologies.slice(0, 4).map((tech) => (
@@ -70,18 +71,16 @@ export const ProjectCard: React.FC<{ project: ProjectItem }> = ({ project }) => 
               <Globe className="h-4 w-4" />
             </a>
           )}
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open ${project.shortTitle} GitHub repository`}
-              title="GitHub Repository"
-              className="text-muted transition-colors hover:text-ink"
-            >
-              <Github className="h-4 w-4" />
-            </a>
-          )}
+          <a
+            href={githubHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.shortTitle} on GitHub`}
+            title={project.githubUrl ? 'GitHub Repository' : 'View on GitHub (@PushkarEz)'}
+            className="text-muted transition-colors hover:text-ink"
+          >
+            <Github className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </article>
