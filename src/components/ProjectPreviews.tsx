@@ -8,6 +8,7 @@ const EV_STUDIO_PALETTES = [
 ];
 
 export const ProjectPreviewGraphic: React.FC<{ project: ProjectItem }> = ({ project }) => {
+  const [reppyqImgFailed, setReppyqImgFailed] = useState(false);
   const [bytexImgFailed, setBytexImgFailed] = useState(false);
   const [pyVizImgFailed, setPyVizImgFailed] = useState(false);
 
@@ -17,6 +18,37 @@ export const ProjectPreviewGraphic: React.FC<{ project: ProjectItem }> = ({ proj
   );
 
   switch (project.walkthroughType) {
+    case 'reppyq-preview':
+      if (!reppyqImgFailed) {
+        return (
+          <div className="relative h-48 w-full overflow-hidden rounded-lg border grid-line bg-[#F8FAFC]">
+            <img
+              src="/reppyq.png"
+              alt="RepPYQ — SPPU PYQ Analyzer preview"
+              onError={() => setReppyqImgFailed(true)}
+              className="h-full w-full object-cover object-top"
+            />
+          </div>
+        );
+      }
+      return (
+        <div className="relative flex h-48 w-full items-end justify-end overflow-hidden rounded-lg bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#334155] p-4 pb-0 pr-0">
+          <div className="h-[88%] w-[92%] overflow-hidden rounded-tl-lg border-l border-t border-black/15 bg-[#F8FAFC] text-[#0F172A] shadow-2xl">
+            <div className="flex items-center justify-between border-b border-black/10 px-4 py-2 text-[10px]">
+              <span className="font-semibold">RepPYQ</span>
+              <span className="font-mono text-[9px] text-slate-500">SPPU 2019 Pattern</span>
+            </div>
+            <div className="px-5 pt-5 text-center">
+              <p className="text-base font-semibold leading-tight">
+                Find Repeated Questions
+                <br />
+                in SPPU Papers.
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+
     case 'phishguard-preview':
       if (!bytexImgFailed) {
         return (

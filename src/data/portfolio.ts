@@ -1,6 +1,6 @@
 export type ProjectStatus = 'Live' | 'Experimental' | 'In Progress' | 'Learning' | 'Competition';
 
-export type ProjectCategory = 'All' | 'AI & Security' | 'Voice & RAG' | 'Learning';
+export type ProjectCategory = 'All' | 'AI & NLP' | 'Security' | 'Learning';
 
 export interface ProjectItem {
   slug: string;
@@ -21,6 +21,7 @@ export interface ProjectItem {
   learned: string[];
   limitations: string[];
   walkthroughType:
+    | 'reppyq-preview'
     | 'phishguard-preview'
     | 'cipherx-walkthrough'
     | 'pdf-rag-walkthrough'
@@ -70,6 +71,7 @@ export const PROFILE = {
     linkedin: 'https://www.linkedin.com/in/pushkar-shinde1608/',
     x: 'https://x.com/PushkarEz16',
     instagram: 'https://www.instagram.com/pushkar.ez/',
+    instagramEnabled: false,
   },
   education: {
     degree: 'B.E. Electronics & Telecommunication Engineering',
@@ -120,6 +122,44 @@ export const QUOTES: QuoteItem[] = [
 
 export const PROJECTS: ProjectItem[] = [
   {
+    slug: 'reppyq',
+    title: 'RepPYQ — SPPU Exam PYQ Repeat & Pattern Analyzer',
+    shortTitle: 'RepPYQ',
+    subtitle: 'SPPU 2019 Pattern · PYQ Analyzer.',
+    description:
+      'Analyzes 3 to 10 SPPU past exam PDFs, sorts questions into Unit 1–2 (Insem) or Unit 3–6 (Endsem), and surfaces the most repeated questions.',
+    status: 'Live',
+    category: 'AI & NLP',
+    technologies: ['Python', 'NLP', 'PDF Parsing', 'React'],
+    liveUrl: 'https://reppyq.vercel.app/',
+    githubUrl: 'https://github.com/PushkarEz/RepPYQ',
+    showInMainGrid: true,
+    problem:
+      'University students waste hours manually flipping through 5–10 years of SPPU question paper PDFs to figure out which questions and units repeat most before Insem and Endsem exams.',
+    solution:
+      'RepPYQ lets students drop 3 to 10 SPPU exam PDFs for any branch, automatically sorts papers chronologically, classifies questions into Unit 1–2 (Insem) or Unit 3–6 (Endsem), and highlights repeated questions so students know what to study first.',
+    features: [
+      'Multi-PDF upload (3 to 10 SPPU question papers) with chronological sorting',
+      'Automatic Unit 1–2 (Insem) and Unit 3–6 (Endsem) classification',
+      'Repetition detection across past SPPU exam papers',
+      'Clean dark/light web interface for quick exam revision',
+    ],
+    approach: [
+      'Built an extraction and parsing pipeline tailored to SPPU 2019 pattern question papers.',
+      'Matched semantically similar and repeated questions across multiple exam sessions.',
+      'Deployed the frontend cleanly on Vercel for instant student access.',
+    ],
+    learned: [
+      'Handling real-world university PDF layouts, numbering schemes, and Insem/Endsem structure.',
+      'Designing fast, clear interfaces for multi-document analysis workflows.',
+    ],
+    limitations: [
+      'Currently tuned for SPPU 2019 pattern question papers across branches.',
+      'Image-only/scanned PDFs without selectable text layers can reduce extraction accuracy.',
+    ],
+    walkthroughType: 'reppyq-preview',
+  },
+  {
     slug: 'bytex',
     title: 'ByteX — AI-Powered Security & Threat Analyzer',
     shortTitle: 'ByteX',
@@ -127,7 +167,7 @@ export const PROJECTS: ProjectItem[] = [
     description:
       'Analyzes suspicious URLs, emails, passwords, IPs, and WhatsApp messages with VirusTotal and Groq AI explanations.',
     status: 'Live',
-    category: 'AI & Security',
+    category: 'Security',
     technologies: ['Python', 'Flask', 'VirusTotal', 'Groq API'],
     liveUrl: 'https://bytex.onrender.com/',
     showInMainGrid: true,
@@ -198,7 +238,7 @@ export const PROJECTS: ProjectItem[] = [
     description:
       'Local Python desktop voice assistant pairing speech recognition (ASR), TTS, and Ollama for spoken replies and OS automation.',
     status: 'Experimental',
-    category: 'Voice & RAG',
+    category: 'AI & NLP',
     technologies: ['Python', 'Ollama', 'ASR', 'TTS'],
     showInMainGrid: true,
     problem:
@@ -233,9 +273,9 @@ export const PROJECTS: ProjectItem[] = [
     description:
       'Document Q&A pipeline exploring PDF extraction, chunking, Sentence Transformers, FAISS search, and Ollama.',
     status: 'In Progress',
-    category: 'Voice & RAG',
+    category: 'AI & NLP',
     technologies: ['Python', 'FAISS', 'Embeddings', 'Ollama'],
-    showInMainGrid: true,
+    showInMainGrid: false,
     problem:
       'Long PDFs are slow to search manually, while pasting full documents directly into an LLM prompt hits context limits and increases hallucinations.',
     solution:

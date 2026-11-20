@@ -30,7 +30,8 @@ interface SocialCardItem {
   meta: string;
   footerLeft: string;
   footerRight: string;
-  href: string;
+  href?: string;
+  comingSoon?: boolean;
   accentGradient: string;
   icon: React.ReactNode;
 }
@@ -40,6 +41,7 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
   const [istClock, setIstClock] = useState('');
   const [views, setViews] = useState<number | null>(null);
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
+  const [igNotice, setIgNotice] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -63,7 +65,6 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
     return () => clearInterval(timer);
   }, []);
 
-  // Live visitor counter using Abacus (primary) + CounterAPI (fallback)
   useEffect(() => {
     let active = true;
     const countedKey = 'pushkar_portfolio_live_counted';
@@ -71,7 +72,6 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
     async function fetchCount(): Promise<number | null> {
       const alreadyCounted = sessionStorage.getItem(countedKey) === '1';
 
-      // 1. Try Abacus public counter
       try {
         const abacusUrl = alreadyCounted
           ? 'https://abacus.jasoncameron.dev/get/pushkar-shinde-portfolio/visits'
@@ -88,7 +88,6 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
         // try fallback
       }
 
-      // 2. Fallback to CounterAPI
       try {
         const counterUrl = alreadyCounted
           ? 'https://api.counterapi.dev/v1/pushkarez-portfolio-2026/views'
@@ -132,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
       handle: `@${PROFILE.githubUsername}`,
       bio: 'Automating things so I can be lazy later... · Python & AI experiments',
       meta: 'Pune, India (UTC +05:30)',
-      footerLeft: '4 Showcase Builds',
+      footerLeft: 'RepPYQ · ByteX + more',
       footerRight: 'github.com/PushkarEz',
       href: PROFILE.socials.github,
       accentGradient: 'from-[#0D1117] via-[#161B22] to-[#0B1F16]',
@@ -165,12 +164,15 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
     {
       id: 'instagram',
       label: 'Instagram',
-      handle: '@pushkar.ez',
-      bio: 'College life, hackathons, and behind-the-scenes experiments.',
+      handle: PROFILE.socials.instagramEnabled ? '@pushkar.ez' : 'Coming Soon',
+      bio: PROFILE.socials.instagramEnabled
+        ? 'College life, hackathons, and behind-the-scenes experiments.'
+        : 'Instagram profile link is currently paused — coming soon.',
       meta: 'Pune, India',
-      footerLeft: 'Builder Journal',
-      footerRight: 'instagram.com/pushkar.ez',
-      href: PROFILE.socials.instagram,
+      footerLeft: PROFILE.socials.instagramEnabled ? 'Builder Journal' : 'Status: Coming Soon',
+      footerRight: PROFILE.socials.instagramEnabled ? 'instagram.com/pushkar.ez' : 'Paused',
+      href: PROFILE.socials.instagramEnabled ? PROFILE.socials.instagram : undefined,
+      comingSoon: !PROFILE.socials.instagramEnabled,
       accentGradient: 'from-[#1B1026] via-[#261433] to-[#120D1D]',
       icon: <Instagram className="h-3.5 w-3.5 text-muted" />,
     },
@@ -234,7 +236,7 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
             className="inline-flex h-8 items-center gap-1.5 rounded-md border grid-line bg-surface px-2.5 font-mono text-[11px] text-muted"
           >
             <Eye className="h-3.5 w-3.5" />
-            <span>{views !== null ? views.toLocaleString() : '...'}</span>
+            <span>{views !== null ? views.toLocaleString() : 'Live'}</span>
           </span>
 
           <button
@@ -279,8 +281,8 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
             <TechBrandIcon name="Flask" className="inline h-3.5 w-3.5 text-ink/80" />
             <span>Flask</span>
           </span>{' '}
-          to ship web tools like <strong className="font-medium text-ink">ByteX</strong>,
-          explore{' '}
+          to ship web tools like <strong className="font-medium text-ink">RepPYQ</strong> &amp;{' '}
+          <strong className="font-medium text-ink">ByteX</strong>, explore{' '}
           <span className="inline-flex items-center gap-1 align-baseline font-medium text-ink">
             <TechBrandIcon name="Ollama" className="inline h-3.5 w-3.5 text-[#A78BFA]" />
             <span>Ollama</span>
@@ -351,17 +353,33 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
                   onMouseEnter={() => setHoveredSocial(item.id)}
                   onMouseLeave={() => setHoveredSocial(null)}
                 >
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onFocus={() => setHoveredSocial(item.id)}
-                    onBlur={() => setHoveredSocial(null)}
-                    className="inline-flex items-center gap-1.5 rounded-md border grid-line bg-surface px-3 py-1.5 text-xs text-ink/90 transition-colors hover:border-ink/40 hover:bg-subtle"
-                  >
-                    {item.icon}
-                    <span>{item.label}</span>
-                  </a>
+                  {item.comingSoon ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIgNotice(true);
+                        setTimeout(() => setIgNotice(false), 2200);
+                      }}
+                      onFocus={() => setHoveredSocial(item.id)}
+                      onBlur={() => setHoveredSocial(null)}
+                      className="inline-flex items-center gap-1.5 rounded-md border grid-line bg-surface px-3 py-1.5 text-xs text-muted transition-colors hover:border-ink/40 hover:text-ink"
+                    >
+                      {item.icon}
+                      <span>{igNotice ? 'Coming soon' : item.label}</span>
+                    </button>
+                  ) : (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onFocus={() => setHoveredSocial(item.id)}
+                      onBlur={() => setHoveredSocial(null)}
+                      className="inline-flex items-center gap-1.5 rounded-md border grid-line bg-surface px-3 py-1.5 text-xs text-ink/90 transition-colors hover:border-ink/40 hover:bg-subtle"
+                    >
+                      {item.icon}
+                      <span>{item.label}</span>
+                    </a>
+                  )}
 
                   {isHovered && (
                     <div
@@ -386,8 +404,8 @@ export const Hero: React.FC<HeroProps> = ({ theme, onToggleTheme }) => {
                             )}
                           </div>
                           <span className="inline-flex items-center gap-1 font-mono text-[10px] text-muted">
-                            <span>{item.label}</span>
-                            <ArrowUpRight className="h-3 w-3" />
+                            <span>{item.comingSoon ? 'Soon' : item.label}</span>
+                            {!item.comingSoon && <ArrowUpRight className="h-3 w-3" />}
                           </span>
                         </div>
 

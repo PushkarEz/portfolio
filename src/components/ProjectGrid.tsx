@@ -4,7 +4,7 @@ import { PROJECTS, ProjectCategory } from '../data/portfolio';
 import { ProjectCard } from './ProjectCard';
 import { Reveal } from './MotionPrimitives';
 
-const CATEGORIES: ProjectCategory[] = ['All', 'AI & Security', 'Voice & RAG', 'Learning'];
+const CATEGORIES: ProjectCategory[] = ['All', 'AI & NLP', 'Security', 'Learning'];
 
 export const ProjectGrid: React.FC = () => {
   const [filter, setFilter] = useState<ProjectCategory>('All');
@@ -18,7 +18,6 @@ export const ProjectGrid: React.FC = () => {
 
   return (
     <section id="projects" className="scroll-mt-16 border-b grid-line">
-      {/* Consistent Section Header matching Skills / Journey / GitHub */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b grid-line px-5 py-4 sm:px-8">
         <h2 className="font-serif text-3xl font-normal tracking-tight text-ink sm:text-4xl">
           Projects
@@ -44,7 +43,6 @@ export const ProjectGrid: React.FC = () => {
         </div>
       </div>
 
-      {/* Compact 2-Column Project Cards */}
       <div className="p-4 sm:p-6">
         <div key={`${filter}-${showAll}`} className="animate-hero-in grid gap-4 md:grid-cols-2">
           {visible.map((project, index) => (
@@ -54,7 +52,6 @@ export const ProjectGrid: React.FC = () => {
           ))}
         </div>
 
-        {/* View More / Show Less Toggle for 5th Project (EV Parking System) */}
         {filter === 'All' && PROJECTS.length > 4 && (
           <div className="mt-5 flex justify-center">
             <button

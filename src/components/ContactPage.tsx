@@ -230,15 +230,25 @@ export const ContactPage: React.FC<ContactPageProps> = ({ theme, onToggleTheme }
               <Linkedin className="h-3.5 w-3.5 text-muted" />
               <span>LinkedIn</span>
             </a>
-            <a
-              href={PROFILE.socials.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border grid-line bg-surface px-3 py-1.5 text-xs text-ink/90 hover:border-ink/40"
-            >
-              <Instagram className="h-3.5 w-3.5 text-muted" />
-              <span>Instagram</span>
-            </a>
+            {PROFILE.socials.instagramEnabled ? (
+              <a
+                href={PROFILE.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-md border grid-line bg-surface px-3 py-1.5 text-xs text-ink/90 hover:border-ink/40"
+              >
+                <Instagram className="h-3.5 w-3.5 text-muted" />
+                <span>Instagram</span>
+              </a>
+            ) : (
+              <span
+                title="Instagram coming soon"
+                className="inline-flex items-center gap-1.5 rounded-md border grid-line bg-surface px-3 py-1.5 text-xs text-muted opacity-75"
+              >
+                <Instagram className="h-3.5 w-3.5" />
+                <span>Instagram (Soon)</span>
+              </span>
+            )}
           </div>
         </div>
 
